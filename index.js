@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // Tampilan selamat datang
 app.get('/', (req, res) => {
     const welcomeMessage = `
-        || Selamat Datang ||
+        || Muhammad Arif Rivai - 21312097 ||
         Menu Tabel:
         1. /produk ||
         2. /pelanggan ||
