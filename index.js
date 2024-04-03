@@ -8,6 +8,12 @@ const response = ('./response.js')
 // Menggunakan body-parser middleware
 app.use(bodyParser.json());
 
+// Tampilan selamat datang
+app.get('/', (req, res) => {
+    res.send('Selamat Datang');
+});
+
+
 // Get data produk
 app.get('/produk', (req, res) => {
     db.query('SELECT * FROM produk', (error, results) => { 
@@ -78,9 +84,9 @@ app.delete('/produk/:id', (req, res) => {
     });
 });
 
-// Get data Pelanggan
+// Get data pelanggan
 app.get('/pelanggan', (req, res) => {
-    db.query('SELECT * FROM Pelanggan', (error, results) => { 
+    db.query('SELECT * FROM pelanggan', (error, results) => { 
         if (error) {
             console.error(error);
             res.status(500).send("Internal server error");
@@ -89,18 +95,18 @@ app.get('/pelanggan', (req, res) => {
         }
     });
 });
-// Insert data Pelanggan (POST)
+// Insert data pelanggan (POST)
 app.post('/pelanggan', (req, res) => {
     const { nama_pelanggan, alamat, email } = req.body;
     const values = { nama_pelanggan, alamat, email };
 
-    db.query('INSERT INTO Pelanggan SET ?', values, (error, result) => {
+    db.query('INSERT INTO pelanggan SET ?', values, (error, result) => {
         if (error) {
             console.error(error);
             res.status(500).send("Gagal menambahkan data pelanggan.");
         } else {
             // Ambil kembali data yang baru ditambahkan
-            db.query('SELECT * FROM Pelanggan WHERE id_pelanggan = ?', result.insertId, (err, results) => {
+            db.query('SELECT * FROM pelanggan WHERE id_pelanggan = ?', result.insertId, (err, results) => {
                 if (err) {
                     console.error(err);
                     res.status(500).send("Internal server error");
@@ -149,9 +155,9 @@ app.delete('/pelanggan/:id', (req, res) => {
     });
 });
 
-// Get data Transaksi
+// Get data transaksi
 app.get('/transaksi', (req, res) => {
-    db.query('SELECT * FROM Transaksi', (error, results) => { 
+    db.query('SELECT * FROM transaksi', (error, results) => { 
         if (error) {
             console.error(error);
             res.status(500).send("Internal server error");
@@ -160,18 +166,18 @@ app.get('/transaksi', (req, res) => {
         }
     });
 });
-// Insert data Transaksi (POST)
+// Insert data transaksi (POST)
 app.post('/transaksi', (req, res) => {
     const { id_pelanggan, tanggal_transaksi, total } = req.body;
     const values = { id_pelanggan, tanggal_transaksi, total };
 
-    db.query('INSERT INTO Transaksi SET ?', values, (error, result) => {
+    db.query('INSERT INTO transaksi SET ?', values, (error, result) => {
         if (error) {
             console.error(error);
             res.status(500).send("Gagal menambahkan data transaksi.");
         } else {
             // Ambil kembali data yang baru ditambahkan
-            db.query('SELECT * FROM Transaksi WHERE id_transaksi = ?', result.insertId, (err, results) => {
+            db.query('SELECT * FROM transaksi WHERE id_transaksi = ?', result.insertId, (err, results) => {
                 if (err) {
                     console.error(err);
                     res.status(500).send("Internal server error");
@@ -219,9 +225,9 @@ app.delete('/transaksi/:id', (req, res) => {
     });
 });
 
-// GET data Detail Transaksi (GET)
+// GET data Detail transaksi (GET)
 app.get('/detail_transaksi', (req, res) => {
-    db.query('SELECT * FROM Detail_Transaksi', (error, results) => { 
+    db.query('SELECT * FROM detail_transaksi', (error, results) => { 
         if (error) {
             console.error(error);
             res.status(500).send("Internal server error");
@@ -230,18 +236,18 @@ app.get('/detail_transaksi', (req, res) => {
         }
     });
 });
-// Insert data Detail_Transaksi (POST)
+// Insert data detail_transaksi (POST)
 app.post('/detail_transaksi', (req, res) => {
     const { id_transaksi, id_produk, jumlah, subtotal } = req.body;
     const values = { id_transaksi, id_produk, jumlah, subtotal };
 
-    db.query('INSERT INTO Detail_Transaksi SET ?', values, (error, result) => {
+    db.query('INSERT INTO detail_transaksi SET ?', values, (error, result) => {
         if (error) {
             console.error(error);
             res.status(500).send("Gagal menambahkan data detail transaksi.");
         } else {
             // Ambil kembali data yang baru ditambahkan
-            db.query('SELECT * FROM Detail_Transaksi WHERE id_detail_transaksi = ?', result.insertId, (err, results) => {
+            db.query('SELECT * FROM detail_transaksi WHERE id_detail_transaksi = ?', result.insertId, (err, results) => {
                 if (err) {
                     console.error(err);
                     res.status(500).send("Internal server error");
