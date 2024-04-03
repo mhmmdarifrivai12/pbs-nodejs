@@ -10,8 +10,17 @@ app.use(bodyParser.json());
 
 // Tampilan selamat datang
 app.get('/', (req, res) => {
-    res.send('Selamat Datang');
+    const welcomeMessage = `
+        || Selamat Datang ||
+        Menu Tabel:
+        1. /produk ||
+        2. /pelanggan ||
+        3. /transaksi ||
+        4. /detail_transaksi
+    `;
+    res.send(welcomeMessage);
 });
+
 
 
 // Get data produk
