@@ -4,9 +4,9 @@ const mysql = require('mysql');
 // Membuat koneksi dengan database MySQL
 const db = mysql.createConnection({
     host: 'sql6.freesqldatabase.com', // Nama host database
-    user: 'sql6695750', // Username untuk mengakses database
-    password: 'KyklzMYFuw', // Password untuk mengakses database
-    database: 'sql6695750' // Nama database yang digunakan
+    user: 'sql6700946', // Username untuk mengakses database
+    password: 'FtIrWNjZY1', // Password untuk mengakses database
+    database: 'sql6700946' // Nama database yang digunakan
 });
 
 // Menghubungkan ke database
